@@ -8,6 +8,7 @@ The system answers farming-related queries using a **Knowledge Base first**, the
 ![AgriSmart UI](assets/AgriSmart_1.png)
 
 ### RAG Response with Source
+![RAG Response](assets/AgriSmart_2.png)
 ![RAG Response](assets/AgriSmart_3.png)
 
 # 🚀 Features
