@@ -1,0 +1,66 @@
+# ===============================
+# ENVIRONMENT & SECRETS
+# ===============================
+# This covers .env in root, /frontend, and /backend
+**/.env
+**/.env.*
+
+# ===============================
+# PYTHON & VIRTUAL ENVS
+# ===============================
+__pycache__/
+**/*.py[cod]
+**/*.pyd
+venv/
+env/
+.venv/
+.python-version
+
+# ===============================
+# DATA & PERSISTENCE
+# ===============================
+# Ignore SQLite databases
+*.db
+*.sqlite3
+
+# Ignore the vector store (auto-generated)
+backend/data/vectorstore/
+
+# Ignore your Knowledge Base documents (optional - keep if you want docs on GitHub)
+backend/data/docs/
+
+# ===============================
+# FRONTEND SPECIFIC (JSON & EXPORTS)
+# ===============================
+# We use specific paths so we don't accidentally ignore package.json 
+# or other structural JSON files if you add them later.
+frontend/chats.json
+frontend/answer_cache.json
+frontend/*.pdf
+
+# ===============================
+# CACHE & MODELS
+# ===============================
+# Ignore heavy model downloads and local huggingface caches
+.cache/
+.huggingface/
+**/.pytest_cache/
+
+# ===============================
+# SYSTEM & IDE
+# ===============================
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.log
+
+# This is a common HuggingFace metadata folder
+**/.huggingface/token
+
+# --- SYSTEM (Add these) ---
+# Windows specific
+Desktop.ini
+
+# Some systems create a .ipynb_checkpoints folder if you use Jupyter
+.ipynb_checkpoints/
