@@ -4,6 +4,11 @@ A Retrieval-Augmented Generation (RAG) based Agricultural Assistant built using 
 The system answers farming-related queries using a **Knowledge Base first**, then falls back to **AI-generated responses** when information is not available.
 
 ---
+### Home Screen
+![AgriSmart UI](assets/AgriSmart_1.png)
+
+### RAG Response with Source
+![RAG Response](assets/AgriSmart_3.png)
 
 # 🚀 Features
 
