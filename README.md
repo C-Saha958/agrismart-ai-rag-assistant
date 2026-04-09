@@ -44,27 +44,32 @@ Return Answer + Source Attribution
 
 ---
 
-# 📁 Project Structure
+## 📁 Project Structure
 
 ```
-backend/
+AgriSmart-AI/
 │
-├── app.py                # FastAPI server
-├── rag_chat.py           # Main RAG logic
-├── vectorstore.py        # Chroma DB loader
-├── embeddings.py         # Local embedding model
-├── database.py           # SQLite chat storage
-├── cache.py              # Query cache + similarity
-├── prompts.py            # RAG prompt builder
-├── schemas.py            # API schema
-├── config.py             # Environment config
+├── backend/
+│   ├── app.py
+│   ├── cache_utils.py
+│   ├── config.py
+│   ├── database.py
+│   ├── llm_service.py
+│   ├── models.py
+│   ├── prompts.py
+│   └── vector_db.py
 │
-├── data/
-│   ├── docs/             # Knowledge base files
-│   └── vectorstore/      # Chroma DB (auto generated)
+├── frontend/
+│   ├── app.py
+│   ├── config.py
+│   ├── export.py
+│   ├── storage.py
+│   ├── styles.py
+│   └── ui.py
 │
-├── requirements.txt
-└── .env
+├── .gitignore
+├── README.md
+└── requirements.txt
 ```
 
 ---
