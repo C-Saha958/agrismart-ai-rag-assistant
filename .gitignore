@@ -64,3 +64,7 @@ Desktop.ini
 
 # Some systems create a .ipynb_checkpoints folder if you use Jupyter
 .ipynb_checkpoints/
+
+backend/backend_semantic_cache.json
+frontend/.streamlit/
+frontend/mic_*/

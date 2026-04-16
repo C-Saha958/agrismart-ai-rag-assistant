@@ -4,6 +4,7 @@ import numpy as np
 from langchain_community.vectorstores import Chroma
 from langchain_core.documents import Document
 from langchain_huggingface import HuggingFaceEmbeddings
+from rank_bm25 import BM25Okapi
 from config import DOCS_PATH, VECTORSTORE_PATH, EMBEDDING_MODEL_NAME
 
 # Initialize Embedding Model
@@ -60,17 +61,42 @@ vectorstore = init_vectorstore()
 def cosine_similarity(a, b):
     return np.dot(a, b) / (np.linalg.norm(a) * np.linalg.norm(b))
 
-def check_similar_cache(user_msg: str, cache_dict: dict, threshold: float = 0.90) -> str:
-    """Checks the cache for semantically similar questions and returns the matching key if found."""
+def check_similar_cache(user_msg: str, cache_dict: dict, threshold: float = 0.85) -> str:
+    """Checks the cache using Hybrid Search (BM25 + Semantic) and returns the matching key if found."""
     if not cache_dict:
         return None
         
+    cached_queries = list(cache_dict.keys())
+    
+    # 1. Semantic Scoring (Context)
     user_embedding = embedding_model.embed_query(user_msg)
-    for cached_q in cache_dict:
+    semantic_scores = []
+    for cached_q in cached_queries:
         cached_embedding = embedding_model.embed_query(cached_q)
-        similarity = cosine_similarity(user_embedding, cached_embedding)
-        if similarity > threshold:
-            return cached_q
+        semantic_scores.append(cosine_similarity(user_embedding, cached_embedding))
+        
+    # 2. BM25 Scoring (Keyword matching)
+    tokenized_corpus = [q.lower().split() for q in cached_queries]
+    bm25 = BM25Okapi(tokenized_corpus)
+    tokenized_query = user_msg.lower().split()
+    bm25_scores = bm25.get_scores(tokenized_query)
+    
+    # Normalize BM25 scores (0 to 1 range)
+    max_bm25 = max(bm25_scores) if max(bm25_scores) > 0 else 1.0
+    normalized_bm25 = [score / max_bm25 for score in bm25_scores]
+    
+    # 3. Hybrid Scoring (60% Semantic + 40% BM25)
+    best_score = -1
+    best_match = None
+    
+    for i, cached_q in enumerate(cached_queries):
+        hybrid_score = (0.6 * semantic_scores[i]) + (0.4 * normalized_bm25[i])
+        if hybrid_score > best_score:
+            best_score = hybrid_score
+            best_match = cached_q
+            
+    if best_score > threshold:
+        return best_match
     return None
 
 def get_relevant_docs(user_msg: str, k: int = 3) -> str:

@@ -12,3 +12,7 @@ langchain-huggingface
 groq
 numpy
 fpdf
+
+
+![RAG Response](assets/AgriSmart_2.png)
+![RAG Response](assets/AgriSmart_3.png)

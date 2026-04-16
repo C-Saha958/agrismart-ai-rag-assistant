@@ -1,12 +1,10 @@
-# storage.py
 import json
 import os
+import datetime
 from config import JSON_FILE, CACHE_FILE
 
-# --- CACHE ---
 def load_cache():
-    if not os.path.exists(CACHE_FILE):
-        return {}
+    if not os.path.exists(CACHE_FILE): return {}
     try:
         with open(CACHE_FILE, "r", encoding="utf-8") as f:
             return json.load(f)
@@ -15,14 +13,10 @@ def load_cache():
 
 def save_to_cache(query, answer, source):
     cache = load_cache()
-    cache[query.lower().strip()] = {
-        "answer": answer,
-        "source": source
-    }
+    cache[query.lower().strip()] = {"answer": answer, "source": source}
     with open(CACHE_FILE, "w", encoding="utf-8") as f:
         json.dump(cache, f, indent=2, ensure_ascii=False)
 
-# --- DATABASE ---
 def load_db():
     try:
         with open(JSON_FILE, "r", encoding="utf-8") as f:
@@ -39,11 +33,13 @@ def save_db(data):
     with open(JSON_FILE, "w", encoding="utf-8") as f:
         json.dump(data, f, indent=2, ensure_ascii=False)
 
-def save_message(cid, title, role, content):
+def save_message(cid, title, role, content, timestamp=None):
+    if not timestamp:
+        timestamp = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
     db = load_db()
     if cid not in db["chats"]:
-        db["chats"][cid] = {"title": title, "messages": []}
-    db["chats"][cid]["messages"].append({"role": role, "content": content})
+        db["chats"][cid] = {"title": title, "messages": [], "created_at": timestamp}
+    db["chats"][cid]["messages"].append({"role": role, "content": content, "timestamp": timestamp})
     save_db(db)
 
 def delete_chat(cid):

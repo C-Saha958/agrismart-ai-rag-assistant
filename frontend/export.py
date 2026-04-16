@@ -1,4 +1,3 @@
-# export.py
 import base64
 from io import BytesIO
 from fpdf import FPDF

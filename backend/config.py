@@ -16,6 +16,7 @@ load_dotenv(dotenv_path=dotenv_path)
 # --- CONFIGURATION ---
 GROQ_API_KEY = os.getenv("GROQ_API_KEY")
 GROQ_MODEL = os.getenv("GROQ_MODEL")
+STT_MODEL = os.getenv("STT_MODEL") # NEW: Load the Whisper model name
 
 # Pull folder names from .env
 docs_dir_env = os.getenv("DOCS_DIR")
@@ -31,6 +32,7 @@ EMBEDDING_MODEL_NAME = os.getenv("EMBEDDING_MODEL")
 print(f"--- Backend Config Loaded ---")
 print(f"Looking for docs in: {DOCS_PATH}")
 print(f"Embedding Model: {EMBEDDING_MODEL_NAME}")
+print(f"STT Engine: {STT_MODEL}")  # NEW: Added to debug print
 print(f"------------------------------")
 
 # --- AUTO-INITIALIZATION ---
