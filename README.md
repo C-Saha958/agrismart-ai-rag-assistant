@@ -24,9 +24,9 @@
 
 ### 📸 Chat UI
 
-![Chat UI](assets\AgriSmart_1.2.png)
-![Chat UI](assets\AgriSmart_1.3.png)
-![Chat UI](assets\AgriSmart_1.5.png)
+![Chat UI](assets/AgriSmart_1.2.png)
+![Chat UI](assets/AgriSmart_1.3.png)
+![Chat UI](assets/AgriSmart_1.5.png)
 ---
 
 ## 🌟 Why This Project Stands Out
