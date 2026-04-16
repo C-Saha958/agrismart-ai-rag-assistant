@@ -22,7 +22,7 @@
 
 ---
 
-### 📸 Screenshots
+### 📸 Chat UI
 
 ![Chat UI](assets\AgriSmart_1.2.png)
 ![Chat UI](assets\AgriSmart_1.3.png)
