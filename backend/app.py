@@ -88,7 +88,7 @@ def chat_endpoint(data: ChatRequest):
     retrieved_docs = get_relevant_docs(user_msg)
     raw_answer = get_llm_answer(user_msg, retrieved_docs)
 
-    # EXACT MATCH TO USER REQUIREMENTS
+    
     if "[SOURCE:KB]" in raw_answer:
         source = "From Database"
         answer = raw_answer.replace("[SOURCE:KB]", "").strip()

@@ -40,8 +40,7 @@ def render_action_row(text, unique_id):
     else fb(txt);
     """.replace('\n', '')
 
-    # UI FIX: Added margin-top: 15px and gap for better spacing. 
-    # Swapped color to primary blue.
+    
     html = f"""
     <div style="display: flex; align-items: center; margin-top: 15px; gap: 10px;">
         <button onclick="{js_code}" style="background:none; border:none; cursor:pointer; color:#0ea5e9; padding:5px;" title="Copy to Clipboard">

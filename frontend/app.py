@@ -5,7 +5,7 @@ from datetime import datetime
 from collections import defaultdict
 import streamlit.components.v1 as components
 
-# --- 1. INITIAL SETUP ---
+# 1. INITIAL SETUP
 try:
     from config import API_URL, USER_AVATAR, AI_AVATAR, MIC_SVG, LOAD_SVG
     from styles import apply_custom_css
@@ -17,9 +17,9 @@ except ImportError:
 
 st.set_page_config(page_title="AgriSmart AI", layout="wide", initial_sidebar_state="expanded") 
 init_session_state()
-apply_custom_css() # Global clean theme is deployed here
+apply_custom_css() 
 
-# --- 2. FLOATING MIC LOGIC ---
+# 2. FLOATING MIC LOGIC
 TRANSCRIBE_URL = API_URL.replace('/chat','/transcribe') if API_URL and '/chat' in API_URL else "http://localhost:8000/transcribe"
 
 components.html(f"""
@@ -144,7 +144,7 @@ components.html(f"""
     </script>
 """, height=0)
 
-# --- 3. SIDEBAR LOGIC ---
+# 3. SIDEBAR LOGIC
 with st.sidebar:
     st.markdown("<div style='height: 10px'></div>", unsafe_allow_html=True)
     
@@ -215,7 +215,7 @@ with st.sidebar:
         for cid, chat, _ in month_chats:
             render_sidebar_chat(cid, chat, is_pinned=False)
 
-# --- 4. MAIN CHAT INTERFACE ---
+# 4. MAIN CHAT INTERFACE
 if not st.session_state.messages:
     st.markdown("<h2 style='text-align: center; margin-top: 15vh; color: #e3e3e3; font-weight: 400;'>How can I help you today?</h2>", unsafe_allow_html=True)
     cols = st.columns(3)
@@ -232,7 +232,7 @@ for i, msg in enumerate(st.session_state.messages):
         if msg["role"] == "assistant":
             render_action_row(msg["content"], f"row_{i}")
 
-# --- 5. CHAT INPUT & PROCESSING ---
+# 5. CHAT INPUT & PROCESSING
 prompt = st.chat_input("Ask AgriSmart AI...")
 
 if prompt:

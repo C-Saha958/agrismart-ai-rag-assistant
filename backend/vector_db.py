@@ -55,9 +55,7 @@ def init_vectorstore():
 # Instantiate the vectorstore instance
 vectorstore = init_vectorstore()
 
-# ===============================
 # ABSTRACTION HELPERS FOR MAIN.PY
-# ===============================
 def cosine_similarity(a, b):
     return np.dot(a, b) / (np.linalg.norm(a) * np.linalg.norm(b))
 

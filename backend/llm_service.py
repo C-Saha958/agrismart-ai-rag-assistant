@@ -1,5 +1,5 @@
 from groq import Groq
-from config import GROQ_API_KEY, GROQ_MODEL, STT_MODEL # NEW: Imported the whisper model
+from config import GROQ_API_KEY, GROQ_MODEL, STT_MODEL
 from prompts import get_agri_prompt
 
 client = Groq(api_key=GROQ_API_KEY)
